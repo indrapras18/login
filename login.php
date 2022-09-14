@@ -7,11 +7,10 @@ if (isset($_POST['btn'])) {
     $password = $_POST['password'];
  
     $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($koneksi, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        // $_SESSION['username'] = $row['username'];
-        header("Location: index2.php");
+        header("Location: index.php");
     } else {
         echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
     }
@@ -48,16 +47,16 @@ if (isset($_POST['btn'])) {
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" name="email" id="form3Example3c" class="form-control" required=""/>
                       <label class="form-label" for="form3Example3c">Your Email</label>
+                      <input type="email" name="email" id="form3Example3c" class="form-control" required=""/>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" name="password" id="form3Example4c" class="form-control" required=""/>
                       <label class="form-label" for="form3Example4c">Password</label>
+                      <input type="password" name="password" id="form3Example4c" class="form-control" required=""/>
                     </div>
                   </div>
 
@@ -102,7 +101,7 @@ if (isset($_POST['btn'])) {
     height: 400px;
   }
   button{
-    width: 100px;
+    width: 200px;
     height: 40px;
     border-radius: 10px;
     background-color: #6C63FF;

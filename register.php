@@ -11,12 +11,13 @@ if (isset($_POST['btn'])) {
  
     if ($password == $password2) {
         $sql = "SELECT * FROM user WHERE email='$email'";
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($koneksi, $sql);
         if (!$result->num_rows > 0) {
             $sql = "INSERT INTO user (nama, email, password) VALUES ('$name', '$email', '$password')";
-            $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($koneksi, $sql);
             if ($result) {
                 echo "<script>alert('Selamat, registrasi berhasil!')</script>";
+                header("Location : index2.php");
             } else {
                 echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
             }
@@ -56,47 +57,44 @@ if (isset($_POST['btn'])) {
                     echo '<p class="text-sucses">Anda berhasil Login, <a href="login.php">Lanjut login</a></p>';
                   }
                 ?>
-                <?php
-                echo '<p> <a href="register.php">Belum Punya Akun?</a></p>';
-                ?>
                 <form method="POST" action="" class="mx-1 mx-md-4">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" name="nama" id="form3Example1c" class="form-control" required=""/>
                       <label class="form-label" for="form3Example1c">Your Name</label>
+                      <input type="text" name="nama" id="form3Example1c" class="form-control" required=""/>
                     </div>
                   </div>
-
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" name="email" id="form3Example3c" class="form-control" required=""/>
-                      <label class="form-label" for="form3Example3c">Your Email</label>
+                    <label class="form-label" for="form3Example3c">Your Email</label>
+                      <input type="email" name="email" id="form3Example3c" class="form-control" required=""/>   
                     </div>
                   </div>
-
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example4c">Password</label>
                       <input type="password" name="password" id="form3Example4c" class="form-control" required=""/>
-                      <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" name="password2" id="form3Example4cd" class="form-control" required=""/>
                       <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                      <input type="password" name="password2" id="form3Example4cd" class="form-control" required=""/>
                     </div>
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                   <button name="btn">Daftar</button>
                   </div>
-
+                  <?php
+                    echo '<p> <a href="login.php">Belum Punya Akun?</a></p>';
+                  ?>
                 </form>
 
               </div>
@@ -141,6 +139,13 @@ if (isset($_POST['btn'])) {
     color: white;
   }
   button:hover{
-    background-color: #46E430;
+    background-color: #6A67CE;
+  }
+  p{
+    text-align: center;
+    text-decoration :none;
+  }
+  a{
+    text-decoration: none;
   }
  </style>
